@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<!-- 广州→太原 · 自驾离线网页 app。纯原生，不连任何外部网址（大陆网络 + 路上断网也要能开）。
+     站名、时间、电量全在 plan.js；怎么重算在 calc.js；界面在 app.js。 -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="广州→太原">
+<meta name="theme-color" content="#0A0A0C">
+<meta name="color-scheme" content="dark">
+<meta name="format-detection" content="telephone=no">
+<title>广州→太原</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+  <div id="notices"></div>
+  <div id="view"><p class="meta">正在读计划…</p></div>
+</main>
+
+<nav class="tabbar" aria-label="切换页面">
+  <button type="button" data-act="tab" data-tab="now" aria-selected="true">现在</button>
+  <button type="button" data-act="tab" data-tab="trip" aria-selected="false">行程</button>
+  <button type="button" data-act="tab" data-tab="rules" aria-selected="false">规矩</button>
+</nav>
+
+<div id="sheet" class="sheet-wrap hide" aria-hidden="true">
+  <div class="sheet-bg" data-act="sheet-close"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title"><div id="sheet-body"></div></div>
+</div>
+
+<div id="update" class="update-bar hide" role="status">
+  <span>有新版本</span>
+  <button type="button" class="btn small primary" data-act="reload">点这里刷新</button>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="plan.js"></script>
+<script src="calc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

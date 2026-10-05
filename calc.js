@@ -168,7 +168,10 @@
     const n = stops.length;
     const ids = stops.map(stopId);
     const ck = cleanCheckins(rawCk);
-    const exitAt = ms(plan && plan.exitNotBefore);
+    // ★ 10/5 回程判例：免费时段在出发前就开始了（exitNotBefore 早于计划出发），就没有「等 0 点」这回事。
+    //   不这么判，回程页顶上会一直挂着去程那条「已过 0 点，可以出站」，看着像还要管出站时间。
+    const exit0 = ms(plan && plan.exitNotBefore), dep0 = n ? (ms(stops[0].leave) != null ? ms(stops[0].leave) : ms(stops[0].arrive)) : null;
+    const exitAt = exit0 != null && dep0 != null && exit0 <= dep0 ? null : exit0;
     const seen = {}, dupIds = [];
     ids.forEach(id => { if (seen[id] && dupIds.indexOf(id) < 0) dupIds.push(id); seen[id] = 1; });
 

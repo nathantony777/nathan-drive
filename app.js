@@ -140,7 +140,7 @@
   }
   const todoList = s => arr(s.todo).map(str).filter(Boolean);
 
-  // 充电站品牌写「服务区」= 服务区自带的桩（国网等），不是理想 / 小鹏 —— 是替他做的取舍（plan.js 的约定值，不是站名）。
+  // 充电站品牌写「服务区」= 服务区自带的桩（国网等），不是理想 / 小鹏 / 蔚来 —— 是替他做的取舍（plan.js 的约定值，不是站名）。
   // 这种站界面上要长得不一样：黄色虚线框 + 醒目写出为什么（noBrandReason），不能混在两家的站里一眼看不出来。
   const SA = '服务区';
   const saOpts = s => arr(obj(s.charger) && s.charger.options).filter(o => obj(o) && str(o.brand) === SA);
